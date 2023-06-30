@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="password"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        var status = '<%- JSON.stringify(status) %>';
+        if (JSON.parse(status) === "Verificado") {
+            window.location.href = 'http://localhost:3000/';
+            //window.location.href = 'https://www.google.com';
+        }
+
+        function validateForm() {
+            var password = document.getElementById("Password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password.length < 6) {
+                alert("La contraseña debe tener al menos 6 caracteres");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("La contraseña y la confirmación no coinciden");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <img src="https://tomatufoto.uss.cl/images/logo_uss.png" alt="Logo USS" width="200" height="auto">
+    </div>
+    <div class="container">
+        <h1>Restablecer Contraseña</h1>
+        <form action="" method="post" onsubmit="return validateForm()">
+            <input type="password" name="Password" id="Password" placeholder="Contraseña" /><br />
+            <input type="password" name="confirmPassword" id="confirmPassword"
+                placeholder="Confirmar Contraseña" /><br />
+            <input type="submit" value="Restablecer" />
+        </form>
+    </div>
+</body>
+
+</html>
